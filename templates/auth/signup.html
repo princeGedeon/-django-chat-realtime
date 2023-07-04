@@ -1,0 +1,72 @@
+{% extends 'auth/base.html' %}
+{% load static %}
+
+{% block title %} SignUp {% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <!-- 01 Preloader -->
+    <div class="loader-wrapper" id="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+    <!-- Preloader end -->
+    <!-- 02 Main page -->
+    <section class="page-section login-page">
+        <div class="full-width-screen">
+            <div class="container-fluid">
+                <div class="content-detail">
+                    <!-- Signup form -->
+                    <form action="{% url 'signup' %}" class="signup-form" method="post">
+                        {% csrf_token %}
+                        <div class="imgcontainer">
+                          <h2>PRinceChat</h2>
+                        </div>
+                        <div class="input-control">
+                            <div class="row p-l-5 p-r-5">
+                                <div class="col-md-6 p-l-10 p-r-10">
+                                    <input type="text" placeholder="Enter Username" id="username" name="username" required>
+                                </div>
+                                <div class="col-md-6 p-l-10 p-r-10">
+                                    <input type="email" placeholder="Enter Email" id="email" name="email" required>
+                                </div>
+                                <div class="col-md-6 p-l-10 p-r-10">
+                                    <input type="password" placeholder="Enter Password" name="password1" id="password1"
+                                        class="input-checkmark" required>
+                                </div>
+                                <div class="col-md-6 p-l-10 p-r-10">
+                                    <span class="password-field-show">
+                                        <input class="password-field input-checkmark" type="password"
+                                            placeholder="Re-enter Password" name="password2" id="password2" required>
+                                        <span data-toggle=".password-field"
+                                            class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            {% if form.errors %}
+                                {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{error |escape}}
+</div>
+
+                            {% endfor%}
+
+                            {% endfor %}
+
+                            {% endif %}
+
+                            <div class="login-btns">
+                                <button type="submit">S'inscrire</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

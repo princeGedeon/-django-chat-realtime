@@ -1,0 +1,61 @@
+{% extends 'auth/base.html' %}
+{% load static %}
+
+{% block title %} SignUp {% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+
+{% block content %}
+   <!-- 01 Preloader -->
+    <div class="loader-wrapper" id="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+    <!-- Preloader end -->
+    <!-- 02 Main page -->
+    <section class="page-section login-page">
+        <div class="full-width-screen">
+            <div class="container-fluid">
+                <div class="content-detail">
+                    <!-- Login form -->
+                    <form action="{% url 'login' %}" class="login-form" method="post">
+                        {% csrf_token %}
+                        <div class="imgcontainer">
+                            <h2>PRinceChat</h2>
+                        </div>
+                        <div class="input-control">
+                            <input type="text" placeholder="Enter Username" name="username" id="username" required>
+                            <span class="password-field-show">
+                                <input type="password" placeholder="Enter Password" name="password" id="password"
+                                    class="password-field" value="" required>
+                                <span data-toggle=".password-field"
+                                    class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </span>
+
+                               {% if form.errors %}
+                                {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{error |escape}}
+</div>
+
+                            {% endfor%}
+
+                            {% endfor %}
+
+                            {% endif %}
+
+                            <div class="login-btns">
+                                <button type="submit">Login</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- latest jquery-->
+{% endblock %}
