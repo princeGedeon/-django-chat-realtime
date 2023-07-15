@@ -79,13 +79,14 @@ WSGI_APPLICATION = "django_rta.wsgi.application"
 ASGI_APPLICATION = "django_rta.asgi.application"
 
 CHANNEL_LAYERS = {
-        "default": {
-            "BACKEND": "channels_redis.core.RedisChannelLayer",
-            "CONFIG": {
-                "hosts": [("localhost", 6379)],
-            },
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
         },
-    }
+    },
+}
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -128,7 +129,7 @@ USE_I18N = True
 USE_TZ = True
 
 LOGOUT_REDIRECT_URL='/'
-LOGIN_REDIRECT_URL="/rooms/"
+LOGIN_REDIRECT_URL="/rooms"
 LOGIN_URL="/login/"
 
 
